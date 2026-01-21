@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: "Microsoft JhengHei", sans-serif;
+            font-family: "Microsoft JhengHei", "Heiti TC", sans-serif;
             background-color: var(--navy);
             color: #333;
             margin: 0;
@@ -31,7 +31,7 @@
             background-color: var(--white);
             width: 95%;
             max-width: 700px;
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
@@ -40,8 +40,8 @@
             transition: all 0.5s ease;
         }
 
-        h1 { color: var(--navy); margin-bottom: 5px; font-size: 1.8rem; }
-        .subtitle { color: #666; font-size: 1rem; margin-bottom: 30px; }
+        h1 { color: var(--navy); margin-bottom: 5px; font-size: 1.6rem; }
+        .subtitle { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
 
         .hidden { display: none !important; }
 
@@ -58,47 +58,73 @@
             margin: 5px;
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            -webkit-tap-highlight-color: transparent;
         }
         .btn:hover { transform: scale(1.05); background-color: #e65c00; }
+        .btn:active { transform: scale(0.95); }
         .btn-secondary { background-color: var(--navy); }
-        .btn-next { background-color: var(--info); margin-top: 15px; }
+        .btn-next { background-color: var(--info); margin-top: 15px; width: 80%; }
+
+        /* 徽章樣式 */
+        .badge-img {
+            width: 150px;
+            height: auto;
+            margin: 20px 0;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
 
         /* 圖片播放器 */
-        #slideshow-container { position: relative; width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
-        .slide-img { max-width: 100%; max-height: 400px; border-radius: 10px; display: none; border: 3px solid var(--navy); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .slide-counter { margin-bottom: 15px; font-weight: bold; color: var(--navy); font-size: 1.2rem; }
-        .nav-controls { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+        #slideshow-container { 
+            position: relative; 
+            width: 100%; 
+            height: 350px; 
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .slide-img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+            display: none;
+        }
+        .slide-counter { margin-bottom: 10px; font-weight: bold; color: var(--navy); font-size: 1.1rem; }
+        .nav-controls { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
 
         /* 題目區 */
         #question-area { text-align: left; }
-        .q-text { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; color: var(--navy); line-height: 1.5; }
-        .options { display: grid; gap: 12px; }
+        .q-text { font-size: 1.15rem; font-weight: bold; margin-bottom: 15px; color: var(--navy); line-height: 1.6; }
+        .options { display: grid; gap: 10px; }
         .option-btn {
             background: var(--gray);
             border: 2px solid #ddd;
-            padding: 15px;
+            padding: 12px 15px;
             border-radius: 10px;
             text-align: left;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.4;
         }
         .option-btn:hover:not(:disabled) { background: #e8e8e8; border-color: var(--cg-orange); }
-        .option-btn:disabled { cursor: default; }
 
         /* 解析區 */
         #explanation-box {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 15px;
             border-radius: 10px;
             text-align: left;
             background-color: #fff3cd;
             border: 2px solid #ffeeba;
             display: none;
+            font-size: 0.95rem;
         }
         .expl-title { font-weight: bold; color: #856404; margin-bottom: 5px; display: block; }
-        .expl-content { font-size: 1rem; color: #533f03; }
 
         /* 特效層 */
         #effect-overlay {
@@ -109,14 +135,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 10rem;
+            font-size: 8rem;
         }
 
         .explode { animation: explodeAnim 0.6s ease-out forwards; }
         @keyframes explodeAnim {
             0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.8); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
         }
 
         .clap { animation: clapAnim 0.8s ease-in-out infinite; }
@@ -125,38 +151,34 @@
             50% { transform: scale(1.3); }
         }
 
-        /* 遊戲背景效果 */
+        /* 背景與結算 */
         .pass-screen { background: linear-gradient(135deg, #ffffff 0%, #e8f5e9 100%) !important; }
         .fail-screen { background: #2c3e50 !important; color: white !important; }
-        .fail-screen h1, .fail-screen .subtitle, .fail-screen .result-text { color: #ecf0f1 !important; }
+        .fail-screen h1, .fail-screen .subtitle { color: #ecf0f1 !important; }
 
-        .result-text { font-size: 1.5rem; font-weight: bold; margin: 20px 0; }
+        .result-text { font-size: 1.3rem; font-weight: bold; margin: 20px 0; padding: 0 10px; }
         .score-circle {
-            width: 150px; height: 150px; border-radius: 50%;
+            width: 120px; height: 120px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 3.5rem; font-weight: bold; margin: 20px auto;
-            border: 8px solid;
+            font-size: 3rem; font-weight: bold; margin: 20px auto;
+            border: 6px solid;
+        }
+
+        .shake { animation: shakeAnim 0.3s linear; }
+        @keyframes shakeAnim {
+            0%, 100% { transform: translate(0); }
+            25% { transform: translate(-8px, 0); }
+            75% { transform: translate(8px, 0); }
         }
 
         /* 慶祝碎片 */
         .confetti {
-            position: absolute; width: 12px; height: 12px; 
-            animation: confettiDrop 4s linear infinite;
+            position: absolute; width: 10px; height: 10px; 
+            animation: confettiDrop 3s linear infinite;
         }
         @keyframes confettiDrop {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-
-        /* 震動效果 */
-        .shake { animation: shakeAnim 0.3s linear; }
-        @keyframes shakeAnim {
-            0% { transform: translate(0); }
-            20% { transform: translate(-10px, 10px); }
-            40% { transform: translate(10px, -10px); }
-            60% { transform: translate(-10px, -10px); }
-            80% { transform: translate(10px, 10px); }
-            100% { transform: translate(0); }
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
@@ -169,41 +191,35 @@
         <div id="screen-start">
             <h1>艦隊分署<br>防貪指引手冊小測驗</h1>
             <p class="subtitle">艦隊分署政風室關心您</p>
-            <div style="margin: 30px 0;">
-                <span style="font-size: 5rem;">🛡️</span>
+            <div style="margin: 10px 0;">
+                <img src="分署徽章.jpg" alt="分署徽章" class="badge-img" onerror="this.src='https://via.placeholder.com/150?text=徽章圖片載入中'">
             </div>
             <button class="btn" onclick="startSlideshow()">進入測驗導讀</button>
         </div>
 
-        <!-- 圖片播放畫面 -->
+        <!-- 教材導讀畫面 -->
         <div id="screen-slides" class="hidden">
-            <h2 style="color:var(--navy)">指引手冊重點導讀</h2>
+            <h2 style="color:var(--navy); font-size: 1.4rem;">指引手冊重點導讀</h2>
             <div class="slide-counter"><span id="current-slide-num">1</span> / 7</div>
             <div id="slideshow-container">
-                <img src="1.png" class="slide-img" alt="手冊1" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+1'">
-                <img src="2.png" class="slide-img" alt="手冊2" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+2'">
-                <img src="3.png" class="slide-img" alt="手冊3" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+3'">
-                <img src="4.png" class="slide-img" alt="手冊4" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+4'">
-                <img src="5.png" class="slide-img" alt="手冊5" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+5'">
-                <img src="6.png" class="slide-img" alt="手冊6" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+6'">
-                <img src="7.png" class="slide-img" alt="手冊7" onerror="this.src='https://via.placeholder.com/600x400?text=手冊導讀+7'">
+                <!-- 圖片由 JS 載入 -->
             </div>
             
             <div class="nav-controls">
                 <button id="prev-btn" class="btn btn-secondary" onclick="changeSlide(-1)">上一張</button>
                 <button id="next-btn" class="btn" onclick="changeSlide(1)">下一張</button>
             </div>
-            <p style="color:#666; font-size: 0.9rem; margin-top: 15px;">請手動切換閱讀教材內容</p>
+            <p style="color:#666; font-size: 0.85rem; margin-top: 15px;">※ 請點擊按鈕閱讀教材內容</p>
         </div>
 
         <!-- 測驗題目畫面 -->
         <div id="screen-quiz" class="hidden">
-            <div style="display:flex; justify-content: space-between; color: var(--navy); font-weight:bold; margin-bottom: 10px;">
+            <div style="display:flex; justify-content: space-between; color: var(--navy); font-weight:bold; margin-bottom: 10px; font-size: 0.9rem;">
                 <span>進度: <span id="q-progress">1</span> / 20</span>
                 <span>得分: <span id="current-score">0</span></span>
             </div>
             <div id="question-area">
-                <p class="q-text" id="q-content">題目載入中...</p>
+                <p class="q-text" id="q-content"></p>
                 <div class="options" id="options-container"></div>
                 <div id="explanation-box">
                     <span class="expl-title">💡 正確解析：</span>
@@ -220,7 +236,7 @@
             <h1>測驗結束</h1>
             <div id="score-circle" class="score-circle">0</div>
             <p id="result-message" class="result-text"></p>
-            <div style="margin-top: 30px;">
+            <div style="margin-top: 20px;">
                 <button class="btn" onclick="retryQuiz()">再試一次</button>
                 <button class="btn btn-secondary" onclick="goHome()">結束測驗</button>
             </div>
@@ -228,6 +244,16 @@
     </div>
 
     <script>
+        const slideImages = [
+            "https://drive.google.com/uc?export=view&id=1mbdjWmq_9EztTqGozTi_y7AfTKjbHw5e",
+            "https://drive.google.com/uc?export=view&id=1d4jrERo-xBQxOHGVuOakaw5w9monRmWv",
+            "https://drive.google.com/uc?export=view&id=1XWS8NTa-9rkabmkutXeaIgNmc-Sr9B2a",
+            "https://drive.google.com/uc?export=view&id=1m0WDfroz9eKE0RogWU3HQnXVDBTPY3lJ",
+            "https://drive.google.com/uc?export=view&id=1wWqrMpNWbs4oUDGWRFJXVLoHGPpvWem1",
+            "https://drive.google.com/uc?export=view&id=1r3wr3pxCuOIwlvwNLd9NHeGsq-8IxoUn",
+            "https://drive.google.com/uc?export=view&id=1hZCg_8IjkXEjqBDv-SXavjAuelDzNYAr"
+        ];
+
         const questionsData = [
             { q: "海巡同仁A在接受警方盤查時拒檢逃逸，事後發現其車內有第二級毒品。請問若施用「第二級毒品」（如安非他命、大麻），依法應處以何種刑責？", a: "B", p: "根據資料，施用第二級毒品者，處3年以下有期徒刑。", o: { A: "6個月以上5年以下有期徒刑", B: "3年以下有期徒刑", C: "1萬元以上5萬元以下罰鍰", D: "僅需接受毒品危害講習" } },
             { q: "關於接觸毒品的風險評估，下列哪項是同仁誤入歧途施用毒品的常見原因？", a: "B", p: "常見原因為誤判毒品成癮性，認為試一次沒關係，導致輕易嘗試而陷入毒癮。", o: { A: "參加公務員法治教育", B: "誤判毒品成癮性，輕易嘗試", C: "尋求正當紓壓管道", D: "拒絕陌生人的飲料" } },
@@ -256,15 +282,24 @@
         let currentSlideIndex = 0;
         let score = 0;
 
-        // 畫面切換
+        window.onload = function() {
+            const container = document.getElementById('slideshow-container');
+            slideImages.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'slide-img';
+                img.onerror = function() {
+                    this.src = `https://via.placeholder.com/600x400?text=教材圖片+${index+1}+(載入失敗)`;
+                };
+                container.appendChild(img);
+            });
+        };
+
         function showScreen(screenId) {
             document.querySelectorAll('#game-box > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(screenId).classList.remove('hidden');
-            document.getElementById('game-box').classList.remove('shake');
-            document.getElementById('game-box').className = '';
         }
 
-        // --- 圖片播放邏輯 ---
         function startSlideshow() {
             showScreen('screen-slides');
             currentSlideIndex = 0;
@@ -273,31 +308,21 @@
 
         function changeSlide(direction) {
             const slides = document.querySelectorAll('.slide-img');
-            
             if (currentSlideIndex === slides.length - 1 && direction === 1) {
                 startQuiz();
                 return;
             }
-
             currentSlideIndex += direction;
             if (currentSlideIndex < 0) currentSlideIndex = 0;
-            if (currentSlideIndex >= slides.length) currentSlideIndex = slides.length - 1;
-            
             updateSlideDisplay();
         }
 
         function updateSlideDisplay() {
             const slides = document.querySelectorAll('.slide-img');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            slides.forEach((s, i) => {
-                s.style.display = (i === currentSlideIndex) ? 'block' : 'none';
-            });
-            
+            slides.forEach((s, i) => s.style.display = (i === currentSlideIndex) ? 'block' : 'none');
             document.getElementById('current-slide-num').innerText = currentSlideIndex + 1;
-            prevBtn.style.visibility = (currentSlideIndex === 0) ? 'hidden' : 'visible';
-            
+            document.getElementById('prev-btn').style.visibility = (currentSlideIndex === 0) ? 'hidden' : 'visible';
+            const nextBtn = document.getElementById('next-btn');
             if (currentSlideIndex === slides.length - 1) {
                 nextBtn.innerText = "開始測驗";
                 nextBtn.style.backgroundColor = "var(--success)";
@@ -307,7 +332,6 @@
             }
         }
 
-        // --- 測驗邏輯 ---
         function startQuiz() {
             showScreen('screen-quiz');
             score = 0;
@@ -323,7 +347,6 @@
             document.getElementById('q-content').innerText = q.q;
             document.getElementById('explanation-box').style.display = 'none';
             document.getElementById('next-q-btn').classList.add('hidden');
-            
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
             
@@ -341,7 +364,6 @@
             const isCorrect = choice === q.a;
             const buttons = document.querySelectorAll('.option-btn');
             
-            // 禁用所有按鈕
             buttons.forEach(b => b.disabled = true);
 
             if (isCorrect) {
@@ -350,46 +372,30 @@
                 selectedBtn.style.backgroundColor = "#d4edda";
                 selectedBtn.style.borderColor = "var(--success)";
                 triggerEffect('👏', 'clap');
-                
-                // 答對則短暫停頓後自動下一題
                 setTimeout(() => proceedToNextQuestion(), 1000);
             } else {
                 selectedBtn.style.backgroundColor = "#f8d7da";
                 selectedBtn.style.borderColor = "var(--danger)";
-                
-                // 標示正確答案
                 buttons.forEach(b => {
-                    if (b.innerText.startsWith(q.a)) {
-                        b.style.border = "3px solid var(--success)";
-                    }
+                    if (b.innerText.startsWith(q.a)) b.style.border = "3px solid var(--success)";
                 });
-
                 triggerEffect('💥', 'explode');
                 document.getElementById('game-box').classList.add('shake');
                 setTimeout(() => document.getElementById('game-box').classList.remove('shake'), 400);
-
-                // 顯示解析
                 showExplanation(q.p);
             }
         }
 
         function showExplanation(text) {
-            const explBox = document.getElementById('explanation-box');
-            const explText = document.getElementById('expl-text');
-            const nextBtn = document.getElementById('next-q-btn');
-            
-            explText.innerText = text;
-            explBox.style.display = 'block';
-            nextBtn.classList.remove('hidden');
+            document.getElementById('expl-text').innerText = text;
+            document.getElementById('explanation-box').style.display = 'block';
+            document.getElementById('next-q-btn').classList.remove('hidden');
         }
 
         function proceedToNextQuestion() {
             currentQIndex++;
-            if (currentQIndex < currentQuizQuestions.length) {
-                loadQuestion();
-            } else {
-                showResult();
-            }
+            if (currentQIndex < currentQuizQuestions.length) loadQuestion();
+            else showResult();
         }
 
         function triggerEffect(emoji, animClass) {
@@ -398,15 +404,13 @@
             setTimeout(() => overlay.innerHTML = '', 1000);
         }
 
-        // --- 成績結算 ---
         function showResult() {
             showScreen('screen-result');
             const box = document.getElementById('game-box');
             const msg = document.getElementById('result-message');
             const circle = document.getElementById('score-circle');
-            
             circle.innerText = score;
-
+            box.className = ''; 
             if (score >= 60) {
                 box.classList.add('pass-screen');
                 circle.style.borderColor = 'var(--success)';
@@ -422,25 +426,19 @@
         }
 
         function createConfetti() {
-            const colors = ['#f2d74e', '#95c3de', '#ff9a91', '#f2cf66', '#4897f1'];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 40; i++) {
                 const c = document.createElement('div');
                 c.className = 'confetti';
                 c.style.left = Math.random() * 100 + 'vw';
-                c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                c.style.backgroundColor = ['#ff6600', '#003366', '#28a745', '#ffcc00'][Math.floor(Math.random() * 4)];
                 c.style.animationDelay = Math.random() * 2 + 's';
                 document.body.appendChild(c);
-                setTimeout(() => c.remove(), 4000);
+                setTimeout(() => c.remove(), 3000);
             }
         }
 
-        function retryQuiz() {
-            startSlideshow();
-        }
-
-        function goHome() {
-            showScreen('screen-start');
-        }
+        function retryQuiz() { startSlideshow(); }
+        function goHome() { showScreen('screen-start'); }
     </script>
 </body>
 </html>
