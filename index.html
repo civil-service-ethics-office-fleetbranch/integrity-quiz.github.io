@@ -202,7 +202,7 @@
             <h2 style="color:var(--navy); font-size: 1.4rem;">指引手冊重點導讀</h2>
             <div class="slide-counter"><span id="current-slide-num">1</span> / 7</div>
             <div id="slideshow-container">
-                <!-- 圖片由 JS 載入 -->
+                <!-- 圖片由 JS 動態載入本地檔案 -->
             </div>
             
             <div class="nav-controls">
@@ -244,6 +244,7 @@
     </div>
 
     <script>
+        // --- 教材圖片本地路徑 ---
         const slideImages = [
             "1.png",
             "2.png",
@@ -254,6 +255,7 @@
             "7.png"
         ];
 
+        // --- 20 題題庫資料 ---
         const questionsData = [
             { q: "海巡同仁A在接受警方盤查時拒檢逃逸，事後發現其車內有第二級毒品。請問若施用「第二級毒品」（如安非他命、大麻），依法應處以何種刑責？", a: "B", p: "根據資料，施用第二級毒品者，處3年以下有期徒刑。", o: { A: "6個月以上5年以下有期徒刑", B: "3年以下有期徒刑", C: "1萬元以上5萬元以下罰鍰", D: "僅需接受毒品危害講習" } },
             { q: "關於接觸毒品的風險評估，下列哪項是同仁誤入歧途施用毒品的常見原因？", a: "B", p: "常見原因為誤判毒品成癮性，認為試一次沒關係，導致輕易嘗試而陷入毒癮。", o: { A: "參加公務員法治教育", B: "誤判毒品成癮性，輕易嘗試", C: "尋求正當紓壓管道", D: "拒絕陌生人的飲料" } },
@@ -289,7 +291,7 @@
                 img.src = src;
                 img.className = 'slide-img';
                 img.onerror = function() {
-                    this.src = `https://via.placeholder.com/600x400?text=教材圖片+${index+1}+(載入失敗)`;
+                    this.src = `https://via.placeholder.com/600x400?text=教材圖片+${index+1}+(請檢查本地路徑)`;
                 };
                 container.appendChild(img);
             });
